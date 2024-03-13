@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:ui_app/reg.dart';
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class Login extends StatefulWidget {
+  const Login({Key? key}) : super(key: key);
 
+  @override
+  State<Login> createState() => _LoginState();
+}
+
+class _LoginState extends State<Login> {
+  TextEditingController roll = TextEditingController();
+  TextEditingController pass = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,6 +31,7 @@ class MyApp extends StatelessWidget {
             ),
             SizedBox(height: 30, width: 200),
             TextField(
+              controller: roll,
               decoration: InputDecoration(
                 enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(6),
@@ -35,6 +44,7 @@ class MyApp extends StatelessWidget {
             ),
             SizedBox(height: 30, width: 200),
             TextField(
+              controller: pass,
               decoration: InputDecoration(
                   enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(4),
@@ -51,10 +61,12 @@ class MyApp extends StatelessWidget {
                 ),
                 child: Text('Login')),
             SizedBox(height: 30, width: 200),
-            Text(
+            TextButton(onPressed: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context) =>Register()));
+            }, child: Text(
               'Dont have an account? Register',
               style: TextStyle(color: Colors.white),
-            )
+            ))
           ],
         ),
       ),

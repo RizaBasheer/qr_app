@@ -3,7 +3,7 @@ import 'package:ui_app/login.dart';
 
 void main() {
   runApp( MaterialApp(
-    home: MyApp(),
+    home: Login(),
   ));
 }
 
