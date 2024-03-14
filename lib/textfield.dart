@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class TextType extends StatelessWidget {
-  const TextType({Key? key, required this.title,required this.control}) : super(key: key);
+class TextGet extends StatelessWidget {
+  const TextGet({Key? key, required this.title,required this.control}) : super(key: key);
   final String title;
   final TextEditingController control;
   @override

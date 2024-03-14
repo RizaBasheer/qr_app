@@ -56,7 +56,7 @@ class _LoginState extends State<Login> {
             TextButton(
                 onPressed: () {},
                 style: TextButton.styleFrom(
-                  primary: Colors.white,
+                  foregroundColor: Colors.white,
                   side: BorderSide(color: Colors.white),
                 ),
                 child: Text('Login')),

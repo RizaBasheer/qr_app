@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ui_app/qr.dart';
+import 'package:ui_app/textfield.dart';
 
 class Register extends StatefulWidget {
   const Register({Key? key}) : super(key: key);
@@ -27,35 +28,11 @@ class _RegisterState extends State<Register> {
               style: TextStyle(color: Colors.white, fontSize: 25),
             ),
             SizedBox(height: 50, width: 200),
-            TextField(
-              controller: name,
-              decoration: InputDecoration(
-                  enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(4),
-                      borderSide: BorderSide(color: Colors.white)),
-                  hintText: 'Enter your Name ',
-                  hintStyle: TextStyle(color: Colors.white)),
-            ),
+            TextGet(control:name,title : 'Enter your name'),
             SizedBox(height: 30, width: 200),
-            TextField(
-              controller: roll,
-              decoration: InputDecoration(
-                  enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(4),
-                      borderSide: BorderSide(color: Colors.white)),
-                  hintText: 'Enter your roll no ',
-                  hintStyle: TextStyle(color: Colors.white)),
-            ),
+            TextGet(control:roll,title : 'Enter your roll no'),
             SizedBox(height: 30, width: 200),
-            TextField(
-              controller: email,
-              decoration: InputDecoration(
-                  enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(4),
-                      borderSide: BorderSide(color: Colors.white)),
-                  hintText: 'Enter your email ',
-                  hintStyle: TextStyle(color: Colors.white)),
-            ),
+            TextGet(control:email,title : 'Enter your email'),
             SizedBox(height: 30, width: 200),
             TextField(
               controller: pass,
