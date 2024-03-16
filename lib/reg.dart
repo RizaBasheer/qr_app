@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import 'package:ui_app/qr.dart';
 import 'package:ui_app/textfield.dart';
 
@@ -15,6 +18,26 @@ class _RegisterState extends State<Register> {
   TextEditingController email = TextEditingController();
   TextEditingController pass = TextEditingController();
 
+  void register() async {
+    Uri uri = Uri.parse('https://scnner-web.onrender.com/api/register');
+    var response = await http.post(uri,
+        headers: <String, String>{
+          'Content-Type': 'appication/json; charset=UTF-8',
+        },
+        body: jsonEncode({
+          'name': name.text,
+          'email': email.text,
+          'rollno': roll.text,
+          'password': pass.text,
+        }));
+    print('success');
+    // String g_name = name.text;
+    //print(g_name);
+    print(roll);
+    print(email);
+    print(pass);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,17 +51,19 @@ class _RegisterState extends State<Register> {
               style: TextStyle(color: Colors.white, fontSize: 25),
             ),
             SizedBox(height: 60, width: 200),
-            TextGet(control:name,title : 'Enter your name',),
+            TextGet(
+              control: name,
+              title: 'Enter your name',
+            ),
             SizedBox(height: 30, width: 200),
-            TextGet(control:roll,title : 'Enter your roll no'),
+            TextGet(control: roll, title: 'Enter your roll no'),
             SizedBox(height: 30, width: 200),
-            TextGet(control:email,title : 'Enter your email'),
+            TextGet(control: email, title: 'Enter your email'),
             SizedBox(height: 30, width: 200),
             TextField(
               controller: pass,
               obscureText: true,
               decoration: InputDecoration(
-
                   enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(4),
                       borderSide: BorderSide(color: Colors.white)),
@@ -48,6 +73,7 @@ class _RegisterState extends State<Register> {
             SizedBox(height: 30, width: 200),
             TextButton(
                 onPressed: () {
+                  register();
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => QrCode()));
                 },
