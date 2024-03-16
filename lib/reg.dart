@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:ui_app/login.dart';
 import 'package:ui_app/qr.dart';
 import 'package:ui_app/textfield.dart';
 
@@ -18,11 +19,11 @@ class _RegisterState extends State<Register> {
   TextEditingController email = TextEditingController();
   TextEditingController pass = TextEditingController();
 
-  void register() async {
+  void register() async{
     Uri uri = Uri.parse('https://scnner-web.onrender.com/api/register');
     var response = await http.post(uri,
         headers: <String, String>{
-          'Content-Type': 'appication/json; charset=UTF-8',
+          'Content-Type': 'application/json; charset=UTF-8',
         },
         body: jsonEncode({
           'name': name.text,
@@ -30,9 +31,18 @@ class _RegisterState extends State<Register> {
           'rollno': roll.text,
           'password': pass.text,
         }));
-    print('success');
-    // String g_name = name.text;
-    //print(g_name);
+    print(response.statusCode);
+    print(response.body);
+    var data = jsonDecode(response.body);
+    print(data ["message"]);
+    if (response.statusCode== 200){
+      Navigator.push(context, MaterialPageRoute(builder: (context) => Login(),));
+    }
+    else{
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(data ["message"])));
+    }
+    String g_name = name.text;
+    print(g_name);
     print(roll);
     print(email);
     print(pass);
@@ -74,8 +84,6 @@ class _RegisterState extends State<Register> {
             TextButton(
                 onPressed: () {
                   register();
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => QrCode()));
                 },
                 style:
                     TextButton.styleFrom(side: BorderSide(color: Colors.white)),
