@@ -27,8 +27,8 @@ class _RegisterState extends State<Register> {
               'Registration',
               style: TextStyle(color: Colors.white, fontSize: 25),
             ),
-            SizedBox(height: 50, width: 200),
-            TextGet(control:name,title : 'Enter your name'),
+            SizedBox(height: 60, width: 200),
+            TextGet(control:name,title : 'Enter your name',),
             SizedBox(height: 30, width: 200),
             TextGet(control:roll,title : 'Enter your roll no'),
             SizedBox(height: 30, width: 200),
@@ -36,7 +36,9 @@ class _RegisterState extends State<Register> {
             SizedBox(height: 30, width: 200),
             TextField(
               controller: pass,
+              obscureText: true,
               decoration: InputDecoration(
+
                   enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(4),
                       borderSide: BorderSide(color: Colors.white)),

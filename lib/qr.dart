@@ -43,10 +43,11 @@ class QrCode extends StatelessWidget {
                     'Scan',
                     style: TextStyle(color: Colors.white),
                   )),
+              SizedBox(height: 20,),
               TextButton(
                   onPressed: () {
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => MobileScan()));
+                        MaterialPageRoute(builder: (context) => Profile()));
                   },
                   style: TextButton.styleFrom(
                     side: BorderSide(color: Colors.white ),
