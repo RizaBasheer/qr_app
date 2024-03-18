@@ -1,4 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'package:ui_app/profile.dart';
+import 'package:ui_app/qr.dart';
 import 'package:ui_app/reg.dart';
 
 class Login extends StatefulWidget {
@@ -11,6 +16,25 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   TextEditingController roll = TextEditingController();
   TextEditingController pass = TextEditingController();
+  Future<void> LoginPage()async {
+    Uri uri = Uri.parse('https://scnner-web.onrender.com/api/login');
+    var response = await http.post(uri,
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode({
+          'rollno': roll.text,
+          'password': pass.text,
+        }));
+    var decodeData = jsonDecode(response.body);
+    print(decodeData);
+    if (response.statusCode== 200){
+      Navigator.push(context, MaterialPageRoute(builder: (context) => QrCode()));
+    }
+    else{
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(decodeData ["message"])));
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,7 +78,9 @@ class _LoginState extends State<Login> {
             ),
             SizedBox(height: 30, width: 200),
             TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  LoginPage();
+                },
                 style: TextButton.styleFrom(
                   foregroundColor: Colors.white,
                   side: BorderSide(color: Colors.white),

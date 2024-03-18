@@ -19,7 +19,7 @@ class _RegisterState extends State<Register> {
   TextEditingController email = TextEditingController();
   TextEditingController pass = TextEditingController();
 
-  void register() async{
+  Future <void> register() async{
     Uri uri = Uri.parse('https://scnner-web.onrender.com/api/register');
     var response = await http.post(uri,
         headers: <String, String>{
@@ -43,11 +43,10 @@ class _RegisterState extends State<Register> {
     }
     String g_name = name.text;
     print(g_name);
-    print(roll);
-    print(email);
-    print(pass);
+    print(roll.text);
+    print(email.text);
+    print(pass.text);
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
